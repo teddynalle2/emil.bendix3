@@ -1,0 +1,151 @@
+/* General body and text styles */
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+/* General body styles */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
+/* Ensure the body still allows scrolling */
+html {
+    overflow-x: hidden;
+}
+
+/* Container for buttons at the top of the page */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+/* General button styles */
+button {
+    padding: 15px 30px; /* Increase padding for larger buttons */
+    font-size: 1.2em; /* Larger font size */
+    border: 2px solid transparent; /* Border to highlight active button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    background-color: transparent; /* No background color */
+    color: #333; /* Text color */
+    box-shadow: none; /* Remove shadow */
+    margin: 10px; /* Add margin for spacing */
+}
+
+/* Button hover and active styles */
+button:hover {
+    background-color: #eee; /* Light gray background on hover */
+}
+
+/* Active button styles */
+button.active {
+    border-color: #FCECDD; /* Border color for the active button */
+    color: #FCECDD; /* Text color for the active button */
+}
+
+/* Styles for different sections */
+.bigmargin {
+    padding: 20px; /* Adjust padding for content below the buttons */
+    text-align: center; /* Center-align the starter page text */
+}
+
+/* Text styles */
+.text1 {
+    color: #FCECDD;
+    text-transform: uppercase;
+    font-size: calc(5vw + 5vh); /* Dynamic font size */
+}
+
+.text2 {
+    color: #FCECDD;
+    text-transform: uppercase;
+    font-size: calc(6vw + 6vh); /* Dynamic font size */
+}
+
+.text3 {
+    color: #FCECDD;
+    font-size: 20px;
+}
+
+.text4 {
+    color: #FCECDD;
+    font-size: 20px;
+}
+
+/* Card styles */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center-align the cards */
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #FCECDD;
+    border: 1px solid #FCECDD;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px;
+    flex: 1 1 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the headings */
+
+
+/* Background image styles */
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; /* Ensure it takes up the full viewport height */
+}
+
+/* Hover effect for text */
+.hovering-text {
+    font-size: 8em;
+    animation: hover 4s ease-in-out infinite;
+}
+
+/* Keyframes for hovering effect */
+@keyframes hover {
+    0%, 100% {
+        transform: translateY(0); /* Original position */
+    }
+    50% {
+        transform: translateY(-20px); /* Move up */
+    }
+}
+
+/* Form responsiveness */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .input-field {
+        padding: 8px;
+    }
+
+    .submit-btn {
+        padding: 10px;
+    }
+}
+.full-screen-container {
+    height: 100vh; /* Full viewport height */
+    width: 100vw;  /* Full viewport width */
+    display: flex; /* Flexbox to center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+.background-bar-top {
+  background-color: #FCECDD;
+  border: 1px solid #FCECDD;
+  position: fixed;
+    font-size: 20px;
+
+}
