@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Censoring Text Example</title>
+    <style>
+        /* Basic styling */
+        body {
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .censored {
+            text-decoration: line-through;
+            text-decoration-color: black;
+            text-decoration-thickness: 12px;
+        }
+        /* Button styling */
+        #resetButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #resetButton:hover {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>About me</h1>
+
+<p id="censoredText">
+    Even though I believe Bukowski's writing to be quite controversial, his writing speaks to me. Maybe it is as simple as me being among the targeted audience. <br> However, I like to believe that his free form of writing about life makes me understand myself. I do hope that this isn’t just fake news, but I believe that on Bukowski's grave the words: “don’t try” are written. <br> <br> Don’t try. <br> <br> I believe that It’s more difficult not to try than it is to try - because why do we try? Or more importantly, why do I try? <br> <br> Libraries depress me. I think the reason is because there are books next to books next to books and so on that are filled with people's hopes and ambitions - people want to be heard. They’ve put hour after hour of hard work in order to be heard, to have an audience, to be seen. So much writing with words, I think it’s sad. So many voices floating around, never to be heard again. Maybe that is why I love writing words that are spoken. Because then the words aren’t printed on a page, or on the internet, surviving forever. Instead, they live in the moment. You have that precise moment to listen and understand, and to me it resembles life. We don’t live forever and neither should words. <br> <br> Back to not trying. Why would anyone say “Don’t try”? I believe Bukowski is telling us we should to something with our lives that comes natural. If you feel like writing is a task - then maybe writing is not something I should pursue. Expressing myself, generally through words, is something that comes natural to me. I don’t think I could stop even if I tried. <br> <br> Back to the point I made about how depressing books in the library are - maybe having a digital means to share documents, having an infinite amount of something makes them less valuable. Supply and demand.
+</p>
+
+<!-- Reset Button -->
+<button id="resetButton">Clear Censoring</button>
+
+<script>
+    // Your long text that will be censored
+    const text = "Even though I believe Bukowski's writing to be quite controversial, his writing speaks to me. Maybe it is as simple as me being among the targeted audience. <br> However, I like to believe that his free form of writing about life makes me understand myself. I do hope that this isn’t just fake news, but I believe that on Bukowski's grave the words: “don’t try” are written. <br> <br> Don’t try. <br> <br> I believe that It’s more difficult not to try than it is to try - because why do we try? Or more importantly, why do I try? <br> <br> Libraries depress me. I think the reason is because there are books next to books next to books and so on that are filled with people's hopes and ambitions - people want to be heard. They’ve put hour after hour of hard work in order to be heard, to have an audience, to be seen. So much writing with words, I think it’s sad. So many voices floating around, never to be heard again. Maybe that is why I love writing words that are spoken. Because then the words aren’t printed on a page, or on the internet, surviving forever. Instead, they live in the moment. You have that precise moment to listen and understand, and to me it resembles life. We don’t live forever and neither should words. <br> <br> Back to not trying. Why would anyone say “Don’t try”? I believe Bukowski is telling us we should to something with our lives that comes natural. If you feel like writing is a task - then maybe writing is not something I should pursue. Expressing myself, generally through words, is something that comes natural to me. I don’t think I could stop even if I tried. <br> <br> Back to the point I made about how depressing books in the library are - maybe having a digital means to share documents, having an infinite amount of something makes them less valuable. Supply and demand.";
+
+    // Split the text into words
+    const words = text.split(" ");
+    const totalWords = words.length;
+
+    // Retrieve the existing censored word indices from localStorage (if any)
+    let censoredIndices = JSON.parse(localStorage.getItem("censoredIndices")) || [];
+
+    // Function to update the displayed text
+    function updateText() {
+        const censoredText = words.map((word, index) => {
+            if (censoredIndices.includes(index)) {
+                return `<span class="censored">${word}</span>`;
+            } else {
+                return word;
+            }
+        }).join(" ");
+        document.getElementById("censoredText").innerHTML = censoredText;
+    }
+
+    // Function to censor one more word
+    function censorNextWord() {
+        if (censoredIndices.length < totalWords) {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * totalWords);
+            } while (censoredIndices.includes(randomIndex)); // Ensure no duplicate censorship
+
+            // Add the new word to the censored list
+            censoredIndices.push(randomIndex);
+
+            // Save the updated list of censored indices in localStorage
+            localStorage.setItem("censoredIndices", JSON.stringify(censoredIndices));
+
+            // Update the displayed text
+            updateText();
+        }
+    }
+
+    // Function to clear the censorship (reset localStorage)
+    document.getElementById("resetButton").addEventListener("click", function() {
+        // Clear both page load count and censored word indices from localStorage
+        localStorage.removeItem("censoredIndices");
+
+        // Reset the censoredIndices array
+        censoredIndices = [];
+
+        // Reload the page to start fresh with no censored words
+        location.reload();
+    });
+
+    // Update the text initially
+    updateText();
+
+    // Start censoring words progressively every X seconds (e.g., every 3 seconds)
+    const interval = 2000;  // Interval in milliseconds (3 seconds)
+    setInterval(censorNextWord, interval);
+</script>
+
+</body>
+</html>
