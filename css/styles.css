@@ -107,3 +107,25 @@ footer {
     max-width: 100%;
     word-wrap: break-word;
 }
+.image-container {
+    width: 100vw;
+    max-width: 600px; /* Limit the size for larger screens */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%); /* Start with black and white */
+    animation: colorize 8s ease-in-out forwards; /* Animate to full color */
+
+}
+
+/* Keyframes to transition from grayscale to full color */
+@keyframes colorize {
+    0% {
+        filter: grayscale(100%);
+    }
+    100% {
+        filter: grayscale(0%);
+    }
+}
