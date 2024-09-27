@@ -129,3 +129,30 @@ footer {
         filter: grayscale(0%);
     }
 }
+.image-container2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); /* Ensure A4 width (min 210px) */
+    gap: 20px; /* Space between images */
+    width: 90vw;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 141.42%; /* 1:1.414 Aspect Ratio (A4 size) */
+    overflow: hidden;
+    background-color: #fff; /* Optional background color */
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the div while keeping aspect ratio */
+}
