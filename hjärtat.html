@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emil Bendix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon-32x32.png" type="image/png">
+    <style>
+
+
+        .pdf-section {
+          font-family: 'Special Elite', cursive;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .pdf-section h2 {
+          font-family: 'Special Elite', cursive;
+
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #4a4a4a;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            display: block;
+margin-left: auto;
+margin-right: auto
+        }
+        .portfolio img {
+            width: 80%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+margin-left: auto;
+margin-right: auto
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+     
+    <div class="header">
+        
+        <h1>Känslor <br>
+        och logik</h1>
+        <h2></h2>
+        <p>En dikt av Adrian Littwold, läst och illustrerad av mig.</p>
+        <br>
+        <div class="w3-center">
+            <audio id="audio" src="ljudfiler/hjärtat.mp3" preload="auto"></audio>
+      <button class="button" id="playPauseButton">Spela</button>
+      <br>
+      <br>
+      <label for="volumeControl">Volume:</label>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1">
+      <br>
+      <label for="seekBar">Seek:</label>
+      <input type="range" id="seekBar" value="0" min="0" step="1">
+      
+            </div>
+    
+        </div>
+
+        <h3 class="w3-container">
+            Förlåt hjärtat. <br>
+            <br>
+            <br>
+Det var inte meningen att göra det här mot dig <br>
+<br>
+Jag tror inte jag förstod vad som var på spel <br>
+<br>
+Det tar några dagar innan smärtan når dig <br>
+<br>
+Jag önskar att det inte hade blivit så fel <br>
+<br>
+<br>
+Din sorg går inte att föreställa sig <br>
+<br>
+Jag vet bara att det är en fruktansvärd smärta <br>
+<br>
+Din läkning kommer ta tid, igen <br>
+<br>
+Jag lovar att det inte är förevigt, kära hjärta. <br>
+<br>
+<br>
+Du ville så mycket, och ville ge hela dig <br>
+<br>
+Jag kunde inte låta det hända <br>
+<br>
+Du kanske alltid kommer hålla det emot mig <br>
+<br>
+Jag hoppas du förstår, vi kan inte göra en till vända <br>
+<br>
+<br>
+Vi ska läka nu mitt kära hjärta <br>
+<br>
+Vi vet aldrig vad som väntar runt hörnet <br>
+<br>
+Vi får inte ge upp, vi måste vara starka <br>
+<br>
+Du och jag, hjärtat</h3>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+    <script>
+    const audio = document.getElementById('audio');
+const button = document.getElementById('playPauseButton');
+const volumeControl = document.getElementById('volumeControl');
+const seekBar = document.getElementById('seekBar');
+
+// Update seek bar as audio plays
+audio.addEventListener('timeupdate', () => {
+seekBar.value = audio.currentTime;
+seekBar.max = audio.duration || 0; // Update max value
+});
+
+// Play/Pause button functionality
+button.addEventListener('click', () => {
+if (audio.paused) {
+    audio.play();
+    button.textContent = 'Pausa';
+} else {
+    audio.pause();
+    button.textContent = 'Spela';
+}
+});
+
+// Volume control
+volumeControl.addEventListener('input', (event) => {
+audio.volume = event.target.value;
+});
+
+// Seek bar functionality
+seekBar.addEventListener('input', (event) => {
+audio.currentTime = event.target.value;
+});
+
+
+     </script>
+</body>
+</html>
