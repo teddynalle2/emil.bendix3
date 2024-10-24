@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh; /* Full height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative; /* Position for child elements */
+        }
+
+        #typewriter-text {
+            white-space: nowrap; /* Prevent wrapping of text */
+            position: relative; /* Positioning for scrolling */
+            left: 0%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            transition: transform 0s; /* No transition for immediate movement */
+            font-size: 50px; /* Initial font size */
+            display: none; /* Hidden initially */
+        }
+
+        /* Start button styling */
+        #start-button {
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #start-button:hover {
+            background-color: darkgray;
+        }
+
+        /* Fullscreen responsive background image */
+        #background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the entire background */
+            display: none; /* Initially hidden */
+            z-index: 5; /* Behind any other content */
+        }
+
+        /* Hide text once the background image is shown */
+        .hidden {
+            display: none !important;
+        }
+
+        /* New section text */
+        #new-section {
+            display: none; /* Hidden initially */
+            opacity: 0;
+            transition: opacity 2s ease-in; /* Fade in transition */
+            font-size: 32px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        /* To enable smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="typewriter-text"></div>
+    <button id="start-button">Start</button>
+    <img id="background-image" src="css/images/ösjöfors/Ösjöfors_handpappersbruk_arbetare.jpg" alt="Background Image">
+
+    <!-- New section that will be revealed after the scroll -->
+    <div id="new-section">
+        The life before is similar to now... but in what way?
+    </div>
+
+    <script>
+        // Array of text lines to be typed by the typewriter
+        const textLines = [
+            "Imagine you live in a larger house just outside Vimmerbyn.",
+            "It's the year 1780.",
+            "There is no electricity.",
+            "There are no phones.",
+            "You work at a papermill.",
+            "You have three children."
+        ];
+
+        let lineIndex = 0; // Tracks the current line
+        let charIndex = 0; // Tracks the current character in the line
+        const typewriterText = document.getElementById("typewriter-text");
+        const backgroundImage = document.getElementById("background-image");
+        const startButton = document.getElementById("start-button");
+        const newSection = document.getElementById("new-section");
+        const typingSpeed = 100; // Fixed typing speed (in milliseconds)
+        const audio = new Audio("ljudfiler/test.mp3"); // Audio file to be played
+
+        function adjustStyles() {
+            const baseFontSize = 50; // Base font size in pixels
+            const minFontSize = 20; // Minimum font size in pixels
+            const maxFontSize = 100; // Maximum font size in pixels
+
+            const viewportWidth = window.innerWidth;
+            const newFontSize = Math.min(Math.max(baseFontSize * (viewportWidth / 1920), minFontSize), maxFontSize);
+            typewriterText.style.fontSize = `${newFontSize}px`;
+            centerView(); // Update the text's center on resize
+        }
+
+        function typeCharacter() {
+            if (lineIndex < textLines.length) {
+                if (charIndex < textLines[lineIndex].length) {
+                    typewriterText.innerHTML = textLines[lineIndex].substring(0, charIndex + 1); // Replace text instead of appending
+                    charIndex++;
+
+                    centerView(); // Center the view after typing each character
+
+                    setTimeout(typeCharacter, typingSpeed);
+                } else {
+                    setTimeout(moveToNextLine, 800); // Move to the next line after a short pause
+                }
+            }
+        }
+
+        function moveToNextLine() {
+            if (lineIndex < textLines.length - 1) {
+                lineIndex++;
+                charIndex = 0; // Reset character index
+
+                // Reset the text to the new line
+                typewriterText.innerHTML = textLines[lineIndex]; // Set the text to the new line
+
+                // Center the view after updating text
+                centerView(); // Center view for the new line
+                typeCharacter(); // Start typing the next line
+            } else {
+                finishTyping(); // Call the function to handle the end of typing
+            }
+        }
+
+        function finishTyping() {
+            // Play the audio
+            audio.play();
+
+            // Remove the typewriter text and show the background image after a short delay
+            setTimeout(() => {
+                typewriterText.classList.add("hidden");
+                backgroundImage.style.display = "block";
+            }, 1000); // Delay of 1 second before showing the background
+
+            // Trigger scroll to new section 1 minute and 30 seconds after the audio starts
+            setTimeout(scrollToNewSection, 90000); // 90000 milliseconds = 1 minute 30 seconds
+        }
+
+        function scrollToNewSection() {
+            // Reveal the new section by slowly scrolling and fading it in
+            newSection.style.display = "block"; // Make it visible
+            window.scrollTo({
+                top: newSection.offsetTop,
+                behavior: 'smooth'
+            });
+
+            // After scrolling, fade in the text
+            setTimeout(() => {
+                newSection.style.opacity = 1;
+            }, 500); // Delay for smooth fading
+        }
+
+        function centerView() {
+            const textWidth = typewriterText.scrollWidth;
+            const offset = (textWidth / 2) - (window.innerWidth / 2) + 18; // 18px offset to keep the latest character centered
+            typewriterText.style.transform = `translateX(-${offset}px)`; // Move left according to text width
+        }
+
+        // Start button click event handler
+        startButton.onclick = function() {
+            startButton.style.display = 'none'; // Hide the start button
+            typewriterText.style.display = 'block'; // Show the typewriter text
+            adjustStyles(); // Adjust styles initially
+            typeCharacter(); // Start the typing process
+        };
+
+        window.onresize = function() {
+            adjustStyles(); // Adjust styles dynamically on resize
+        };
+    </script>
+
+</body>
+</html>

@@ -70,6 +70,30 @@
         .gray {
           filter: grayscale(100%);
         }
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .marquee h1 {
+            display: inline-block;
+            padding-left: 100%;  /* Initial position */
+            animation: marquee 10s linear infinite;
+        }
+
+        .marquee h1 h1 {
+            padding-left: 10px;  /* Space between the repeated text */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
     </style>
 </head>
 <body>
@@ -82,10 +106,10 @@
 
     <!-- Portfolio Section -->
 
-      <div class="w3-center">
+      <div class="w3-center marquee">
 
         <br>
-      <h1>Bokmässan (2024)</h1>
+      <h1>Bokmässan (2024) <h1>Bokmässan (2024) </h1> </h1>
       <h3>Under bokmässan 2024 ställde jag ut verk som alla arbetade ihop för att bilda samklang.
       </h3>
       <br>
