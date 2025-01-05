@@ -3,104 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Homepage Template</title>
+    <title>Annotated Poem with Handwriting Style</title>
     <style>
-        /* Basic styles for layout */
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            box-sizing: border-box;
         }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
+
+        body {
+            font-family: "Times New Roman", Times, serif;
         }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            background-color: #444;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        .hero {
-            background-color: #f4f4f4;
-            padding: 50px;
-            text-align: center;
-        }
-        .hero h2 {
-            font-size: 2.5rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-        }
-        .content {
+
+        /* Prologue container */
+        .prologue {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
             padding: 20px;
-            max-width: 1200px;
-            margin: auto;
+            background-color: #fff;
+            text-align: left;
+            position: relative;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 20px;
+
+        /* Prologue text container */
+        .prologue-text-container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Swedish Text styling */
+        .prologue-text {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6em;
+            margin-bottom: 30px;
+        }
+
+        /* Highlight clickable text */
+        .highlight {
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .highlight:hover {
+            text-decoration: underline;
+            color: #b30000;
+        }
+
+        .highlight.active {
+            border-bottom: 2px solid #b30000;
+        }
+
+        /* Handwritten-style font for annotation */
+        .annotation-panel {
+            position: absolute;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1em;
+            color: #555;
+            line-height: 1.4em;
+            opacity: 1;
+            transform: translateX(0);
+            white-space: pre-wrap;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Line connecting annotation with clicked text */
+        .annotation-line {
+            position: absolute;
+            width: 2px;
+            background-color: #b30000;
+            transition: height 0.6s ease;
+            opacity: 1;
+        }
+
+        /* Annotation text fade-in effect */
+        .write {
+            animation: writeEffect 0.8s ease-out forwards;
+        }
+
+        @keyframes writeEffect {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Welcome to My Homepage</h1>
-    </header>
+    <div class="prologue">
+        <!-- Prologue with Swedish Text Only -->
+        <div class="prologue-text-container">
+            <!-- Swedish Text -->
+            <div class="prologue-text">
+                <p>
+                    <span class="highlight" onclick="showAnnotation(1, this)">
+                        Uti vår hage där växa blå bär.
+                    </span> Kom hjärtans fröjd<br>
+                    <span class="highlight" onclick="showAnnotation(2, this)">Vill du mig någe', så har du mig här!</span><br>
+                    Kom liljor och aquileja, <br>
+                    Kom rosor och salvia,<br>
+                    Kom ljuva krusmynta, kom hjärtans fröjd!<br><br>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
+                    Fagra små blommor där bjuda till dans.<br>
+                    <span class="highlight" onclick="showAnnotation(3, this)">Kom hjärtans fröjd</span><br>
+                    Vill du, så binder jag åt dig en krans!<br>
+                    Kom liljor och aquileja,<br>
+                    Kom rosor och salvia,<br>
+                    Kom ljuva krusmynta, kom hjärtans fröjd!<br><br>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h2>Your Gateway to Awesome Stuff</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula felis vel massa bibendum vehicula.</p>
-        <button>Get Started</button>
-    </section>
+                    Kransen den sätter jag sen i ditt hår,<br>
+                    <span class="highlight" onclick="showAnnotation(4, this)">Kom hjärtans fröjd</span><br>
+                    Solen den dalar men hoppet uppgår!<br>
+                    Kom liljor och aquileja,<br>
+                    Kom rosor och salvia,<br>
+                    Kom ljuva krusmynta, kom hjärtans fröjd!<br><br>
 
-    <!-- Main Content Section -->
-    <section class="content" id="about">
-        <h2>About Us</h2>
-        <p>We are a team of professionals dedicated to providing the best service possible. Our goal is to ensure customer satisfaction with high-quality products and services.</p>
-        
-        <h2>Services</h2>
-        <p>Our services include web development, graphic design, content creation, and more. We strive to meet our clients' needs with creativity and expertise.</p>
-    </section>
+                    Uti vår hage finns blommor och bär,<br>
+                    <span class="highlight" onclick="showAnnotation(5, this)">Kom hjärtans fröjd</span><br>
+                    Men utav alla du kärast mig är!<br>
+                    Kom liljor och aquileja,<br>
+                    Kom rosor och salvia,<br>
+                    Kom ljuva krusmynta, kom hjärtans fröjd!
+                </p>
+            </div>
+        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 MyWebsite. All rights reserved.</p>
-        <p>Follow us on:
-            <a href="#" style="color: lightblue;">Facebook</a> |
-            <a href="#" style="color: lightblue;">Twitter</a> |
-            <a href="#" style="color: lightblue;">Instagram</a>
-        </p>
-    </footer>
+        <!-- Panel for annotation with handwritten font style -->
+        <div id="annotationPanel" class="annotation-panel"></div>
+    </div>
+
+    <script>
+        // Data for the annotations
+        const annotations = {
+            1: "This line introduces the garden, a symbol of beauty and tranquility.",
+            2: "An invitation that speaks to companionship and availability.",
+            3: "A recurring line, 'Kom hjärtans fröjd' conveys a call for joy and delight.",
+            4: "The poet presents the wreath as a gift, symbolizing unity and affection.",
+            5: "An endearing confession of affection, emphasizing the loved one's importance."
+        };
+
+        // Show annotation when a highlighted word is clicked
+        function showAnnotation(id, element) {
+            const annotationPanel = document.getElementById('annotationPanel');
+            const line = document.createElement('div');
+            line.classList.add('annotation-line');
+            document.body.appendChild(line);
+
+            // Highlight clicked text
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(h => h.classList.remove('active'));
+            element.classList.add('active');
+
+            // Set annotation text
+            const existingAnnotation = document.querySelector(`#annotationPanel[data-id="${id}"]`);
+            if (existingAnnotation) return;  // Do nothing if annotation already exists
+
+            const newAnnotation = document.createElement('div');
+            newAnnotation.classList.add('annotation-panel');
+            newAnnotation.setAttribute('data-id', id);
+            newAnnotation.textContent = annotations[id];
+            newAnnotation.classList.add('write');
+            document.body.appendChild(newAnnotation);
+
+            // Position annotation near the clicked text (relative to viewport)
+            const rect = element.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            // Position annotations based on the viewport and text position
+            const offsetX = rect.left + window.scrollX + rect.width + 10;
+            const offsetY = rect.top + window.scrollY + (rect.height / 2);
+
+            // Ensure that annotations fit within the screen
+            newAnnotation.style.top = Math.min(offsetY / viewportHeight * 100, 90) + 'vh';
+            newAnnotation.style.left = Math.min(offsetX / viewportWidth * 100, 90) + 'vw';
+
+            // Position line to connect text and annotation
+            line.style.height = (offsetY - newAnnotation.offsetTop) + 'px';
+            line.style.left = (rect.left + window.scrollX + rect.width / 2) + 'px';
+            line.style.top = (rect.top + window.scrollY + rect.height / 2) + 'px';
+
+            // Animation for line and annotation
+            setTimeout(() => {
+                line.style.opacity = '1';
+            }, 50);
+        }
+    </script>
 
 </body>
 </html>
