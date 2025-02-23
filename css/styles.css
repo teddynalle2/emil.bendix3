@@ -137,7 +137,14 @@ footer {
     max-width: 1200px;
     padding: 20px;
 }
-
+.image-container2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); /* Ensure A4 width (min 210px) */
+    gap: 20px; /* Space between images */
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+}
 .image-wrapper {
     position: relative;
     width: 100%;
