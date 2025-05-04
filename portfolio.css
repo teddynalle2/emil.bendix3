@@ -1,0 +1,287 @@
+/* Globala inställningar */
+body {
+    font-family: 'Lora', serif; /* Ny huvudfont för brödtext */
+}
+
+.space {
+    height: 190vh;
+}
+
+.space-min {
+    height: 5vh;
+}
+
+/* Bakgrundsbild och layout för alla enheter */
+header .hero {
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/harpist2.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 107vh;
+    color: white;
+    padding: 0 20px 40px;           /* Luft nedtill så texten inte sitter mot kanten */
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 10vw;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+.hero-content p {
+    font-size: 2em;
+    line-height: 1.5;
+}
+
+/* Video-sektion */
+.video-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/introduction.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.video-section1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/image2.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.video-section2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/image3.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.video-section3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/image4.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.video-section4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/image5.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* image on sidepanel */
+.image-panel {
+
+    background: url('css/images/image2.jpg') center/cover no-repeat;
+
+}
+
+
+/* Textkort-beskrivning */
+.text-container {
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 20px;
+    background-color: #ffffff;
+    position: relative;
+    max-width: 2200px;
+    font-family: 'Lora', serif;
+}
+
+.text-container h2 {
+    font-size: 8em;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.text-container p {
+    font-size: 1.5em;
+    line-height: 1.6;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.text-container li {
+    font-size: 1.5em;
+    line-height: 1.6;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .side-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+    transform: translateX(100%); /* ✅ Hide off-screen initially */
+  }
+  
+  .side-panel.active {
+    transform: translateX(0); /* ✅ Slide in */
+  }
+
+  .side-panel.active {
+    right: 0;
+  }
+
+  .open-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .close-btn {
+    background: #000000;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  
+.clickable {
+    cursor: pointer;
+  }
+
+
+/* sound design */
+
+.player {
+margin-bottom: 20px;
+}
+
+button, input[type="range"] {
+margin-top: 10px;
+}
+
+.sound-list button {
+margin-right: 10px;
+}
+
+
+/* Responsiv design */
+@media (max-width: 1024px) {
+    header .hero {
+        background-image: url('css/images/portfolio/phone_background.jpeg');
+    }
+
+    .video-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .video-container, .text-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .video-container iframe {
+        height: 250px;
+    }
+
+    .text-container h2 {
+        font-size: 1.5em;
+    }
+
+    .text-container p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    header .hero {
+        background-image: url('css/images/portfolio/phone_background.jpeg');
+    }
+
+    .video-container iframe {
+        height: 200px;
+    }
+
+    .text-container h2 {
+        font-size: 1.3em;
+    }
+
+    .text-container p {
+        font-size: 1em;
+    }
+    .side-panel {
+        width: 100%;
+      }
+
+    .open-btn {
+        display: block;
+        width: 90%;
+        margin: 10px auto;
+      }
+}
