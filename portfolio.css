@@ -103,6 +103,19 @@ header .hero {
     background-attachment: fixed;
 }
 
+.video-section5 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;       /* Centrerar horisontellt */
+    align-items: flex-end;         /* Flyttar innehållet till botten */
+    background: url('css/images/portfolio/image5.jpg') center/cover no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 /* image on sidepanel */
 .image-panel {
 
